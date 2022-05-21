@@ -5,6 +5,7 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.edu.studentApi.model.Address;
@@ -48,6 +49,12 @@ public class StudentController {
 		return studentResponse;
 	}	
 	
+	@GetMapping(value="/students/{firstName}")
+	public List<StudentEntity>  getStudentByFirstName(@PathVariable("firstName") String firstName) {
+		
+		List<StudentEntity> response = studentSerivce.findByFirstName(firstName);
+				return response;
+	}
 	@GetMapping(value="/hello")
 	public String hello() {
 		return "Hello API";
